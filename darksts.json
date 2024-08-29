@@ -1,0 +1,15 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [32.56133,31.438679]
+        },
+        "properties": {
+          "name": "Dark STS Location"
+        }
+      }
+    ]
+  }
