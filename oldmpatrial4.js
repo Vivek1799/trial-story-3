@@ -256,99 +256,6 @@ map.on('load', function () {
             }
         });
     
-        // Add the new layers for Everest, Asya, SaamFSU, and DarkSTS2SaamFSU
-        map.addSource('everest-25-4sept-data', {
-            type: 'geojson',
-            data: 'everest(25-4sept).geojson' // Ensure this path is correct
-        });
-    
-        map.addLayer({
-            id: 'everest-25-4sept-layer',
-            type: 'line',
-            source: 'everest-25-4sept-data',
-            layout: {
-                'visibility': 'none' // Initially hide the layer
-            },
-            paint: {
-                'line-color': '#d1b200', // Gold color for the line
-                'line-width': 1.5
-            }
-        });
-    
-        map.addSource('asya-25aug-4sept-data', {
-            type: 'geojson',
-            data: 'asya(25aug-4sept).geojson' // Ensure this path is correct
-        });
-    
-        map.addLayer({
-            id: 'asya-25aug-4sept-layer',
-            type: 'line',
-            source: 'asya-25aug-4sept-data',
-            layout: {
-                'visibility': 'none' // Initially hide the layer
-            },
-            paint: {
-                'line-color': '#00cc11', // Green color for the line
-                'line-width': 1.5
-            }
-        });
-    
-        map.addSource('saamfsu25aug-4sept-data', {
-            type: 'geojson',
-            data: 'saamfsu25aug4sept.geojson' // Ensure this path is correct
-        });
-    
-        map.addLayer({
-            id: 'saamfsu25aug-4sept-layer',
-            type: 'line',
-            source: 'saamfsu25aug-4sept-data',
-            layout: {
-                'visibility': 'none' // Initially hide the layer
-            },
-            paint: {
-                'line-color': '#00ffcb', // Dark Orange color for the line
-                'line-width': 3
-            }
-        });
-    
-        map.addSource('darksts2samfsu-data', {
-            type: 'geojson',
-            data: 'darksts2samfsu.json' // Ensure this path is correct
-        });
-    
-        map.addLayer({
-            id: 'darksts2samfsu-point-layer',
-            type: 'circle', // Use 'circle' for a point layer
-            source: 'darksts2samfsu-data',
-            layout: {
-                'visibility': 'none' // Initially hide the layer
-            },
-            paint: {
-                'circle-radius': 7, // Adjust the size of the point
-                'circle-color': '#ff6347', // Set the color of the point (Tomato Red)
-                'circle-stroke-width': 1.5,
-                'circle-stroke-color': '#ffffff' // White border around the point
-            }
-        });
-    
-        // Add a label for the darksts2samfsu.json point layer
-        map.addLayer({
-            id: 'darksts2samfsu-label-layer',
-            type: 'symbol',
-            source: 'darksts2samfsu-data',
-            layout: {
-                'visibility': 'none', // Initially hide the layer
-                'text-field': ['get', 'name'], // Use the 'name' property for the label text
-                'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'], // Font for the text
-                'text-size': 12, // Size of the text
-                'text-offset': [0, 1.5], // Offset to position the label above the point
-                'text-anchor': 'top' // Position the text above the point
-            },
-            paint: {
-                'text-color': '#ffffff' // Color of the text
-            }
-        });
-    
         // Initialize Scrollama
         initScrollama();
     });
@@ -447,75 +354,76 @@ map.on('load', function () {
                 startBlinkingAnimation();
                 break;
     
-                case 'chapter-5':
-                    map.flyTo({ center: [58.86907, 71.03377], zoom: 3.9, pitch: 0, bearing: -10.18 });
-                    if (clockElement) clockElement.style.display = 'block';
-                    updateClock('On 11th August 2024');
-                    updateLegend([
-                        { color: '#00cc11', label: 'Asya Energy Path' }
-                    ]);
-                    map.setLayoutProperty('arctic2-point-layer', 'visibility', 'visible');
-                    map.setLayoutProperty('arctic2-label-layer', 'visibility', 'visible');
-                    map.setLayoutProperty('asya-path-layer', 'visibility', 'visible');
-                    hideOtherLayers(['arctic2-point-layer', 'arctic2-label-layer', 'asya-path-layer']);
-                    startBlinkingAnimation();
-                    break;
-        
-                case 'chapter-6':
-                    map.flyTo({ center: [48.97317, 70.64653], zoom: 4.17, pitch: 0, bearing: -10.18 });
-                    if (clockElement) clockElement.style.display = 'block';
-                    updateClock('From 19th- 26th August 2024');
-                    updateLegend([
-                        { color: '#d1b200', label: 'Everest Energy Path' }
-                    ]);
-                    map.setLayoutProperty('arctic2-point-layer', 'visibility', 'visible');
-                    map.setLayoutProperty('arctic2-label-layer', 'visibility', 'visible');
-                    map.setLayoutProperty('everest20-25august-layer', 'visibility', 'visible');
-                    hideOtherLayers(['arctic2-point-layer', 'arctic2-label-layer', 'everest20-25august-layer']);
-                    startBlinkingAnimation();
-                    break;
-        
-                case 'chapter-7':
-                    map.flyTo({ center: [32.44418, 72.49362], zoom: 5.22, pitch: 2, bearing: -10.18 });
-                    if (clockElement) clockElement.style.display = 'block';
-                    updateClock('Pioneer (15 July-6th August 2024)|Asya Energy (2-15 August)|Everest Energy (19-26 August)');
-                    updateLegend([
-                        { color: '#75baff', label: 'Pioneer Energy Path' },
-                        { color: '#d1b200', label: 'Everest Energy Path' },
-                        { color: '#00cc11', label: 'Asya Energy Path' }
-                    ]);
-                    map.setLayoutProperty('pioneer-layer', 'visibility', 'visible');
-                    map.setLayoutProperty('everest20-25august-layer', 'visibility', 'visible');
-                    map.setLayoutProperty('asya-path-layer', 'visibility', 'visible');
-                    stopBlinkingAnimation();
-                    break;
-        
-                case 'chapter-8':
+            case 'chapter-5':
+                map.flyTo({ center: [58.86907, 71.03377], zoom: 3.9, pitch: 0, bearing: -10.18 });
+                if (clockElement) clockElement.style.display = 'block';
+                updateClock('On 11th August 2024');
+                updateLegend([
+                    { color: '#00cc11', label: 'Asya Energy Path' }
+                ]);
+                map.setLayoutProperty('arctic2-point-layer', 'visibility', 'visible');
+                map.setLayoutProperty('arctic2-label-layer', 'visibility', 'visible');
+                map.setLayoutProperty('asya-path-layer', 'visibility', 'visible');
+                hideOtherLayers(['arctic2-point-layer', 'arctic2-label-layer', 'asya-path-layer']);
+                startBlinkingAnimation();
+                break;
+    
+            case 'chapter-6':
+                map.flyTo({ center: [48.97317, 70.64653], zoom: 4.17, pitch: 0, bearing: -10.18 });
+                if (clockElement) clockElement.style.display = 'block';
+                updateClock('From 19th- 26th August 2024');
+                updateLegend([
+                    { color: '#d1b200', label: 'Everest Energy Path' }
+                ]);
+                map.setLayoutProperty('arctic2-point-layer', 'visibility', 'visible');
+                map.setLayoutProperty('arctic2-label-layer', 'visibility', 'visible');
+                map.setLayoutProperty('everest20-25august-layer', 'visibility', 'visible');
+                hideOtherLayers(['arctic2-point-layer', 'arctic2-label-layer', 'everest20-25august-layer']);
+                startBlinkingAnimation();
+                break;
+    
+            case 'chapter-7':
+                map.flyTo({ center: [32.44418, 72.49362], zoom: 5.22, pitch: 2, bearing: -10.18 });
+                if (clockElement) clockElement.style.display = 'block';
+                updateClock('Pioneer (15 July-6th August 2024)|Asya Energy (2-15 August)|Everest Energy (19-26 August)');
+                updateLegend([
+                    { color: '#75baff', label: 'Pioneer Energy Path' },
+                    { color: '#d1b200', label: 'Everest Energy Path' },
+                    { color: '#00cc11', label: 'Asya Energy Path' }
+                ]);
+                map.setLayoutProperty('pioneer-layer', 'visibility', 'visible');
+                map.setLayoutProperty('everest20-25august-layer', 'visibility', 'visible');
+                map.setLayoutProperty('asya-path-layer', 'visibility', 'visible');
+                stopBlinkingAnimation();
+                break;
+
+            case 'chapter-8':
                     map.flyTo({ center: [72.42133, 71.04954], zoom: 6.23, pitch: 4.13, bearing: 0 });
                     if (clockElement) clockElement.style.display = 'none';
                     if (legendElement) legendElement.style.display = 'none';
+
                     map.setLayoutProperty('pioneer-layer', 'visibility', 'none');
                     map.setLayoutProperty('arctic2-point-layer', 'visibility', 'visible');
                     map.setLayoutProperty('arctic2-label-layer', 'visibility', 'visible');
                     hideOtherLayers(['arctic2-point-layer', 'arctic2-label-layer']);
                     stopAnimation(); // Stop any ongoing animations
                     stopBlinkingAnimation();
-                    break;
-        
-                case 'chapter-9':
-                    map.flyTo({ center: [68.10619, 17.51712], zoom: 3.36, pitch: 2, bearing: 0 });
-                    if (clockElement) clockElement.style.display = 'block';
-                    updateClock('From 1st Jan-15th Jun 2024');
-                    updateLegend([
-                        { color: '#00cc11', label: 'Asya Energy Path' }
-                    ]);
-                    map.setLayoutProperty('pioneer-layer', 'visibility', 'visible');
-                    map.setLayoutProperty('asya-path-layer', 'visibility', 'visible');
-                    map.setLayoutProperty('asyajan-june-layer', 'visibility', 'visible');
-                    hideOtherLayers(['pioneer-layer', 'asya-path-layer', 'asyajan-june-layer']);
-                    stopBlinkingAnimation();
-                    break;
-        
+                    break;    
+    
+            case 'chapter-9':
+                map.flyTo({ center: [68.10619, 17.51712], zoom: 3.36, pitch: 2, bearing: 0 });
+                if (clockElement) clockElement.style.display = 'block';
+                updateClock('From 1st Jan-15th Jun 2024');
+                updateLegend([
+                    { color: '#00cc11', label: 'Asya Energy Path' }
+                ]);
+                map.setLayoutProperty('pioneer-layer', 'visibility', 'visible');
+                map.setLayoutProperty('asya-path-layer', 'visibility', 'visible');
+                map.setLayoutProperty('asyajan-june-layer', 'visibility', 'visible');
+                hideOtherLayers(['pioneer-layer', 'asya-path-layer', 'asyajan-june-layer']);
+                stopBlinkingAnimation();
+                break;
+    
                 case 'chapter-10':
                     map.flyTo({ center: [48.49182, 24.24954], zoom: 4.00, pitch: 0, bearing: 0 });
                     if (clockElement) clockElement.style.display = 'block';
@@ -536,6 +444,7 @@ map.on('load', function () {
                     if (clockElement) clockElement.style.display = 'block';
                     updateClock('From 27th Jun- 26th July 2024');
                     updateLegend([
+                        
                         { color: '#00cc11', label: 'Asya Energy Path' },
                     ]);
                     map.setLayoutProperty('pioneer-layer', 'visibility', 'visible');
@@ -586,170 +495,107 @@ map.on('load', function () {
                     map.setLayoutProperty('asyajune-25june-layer', 'visibility', 'none');
                     map.setLayoutProperty('asyajune-july-layer', 'visibility', 'none');
                     map.setLayoutProperty('darksts-label-layer', 'visibility', 'visible');
-                    // startAnimation(); // Start the animation for Pioneer and NewEnergy
-                   
+                    startAnimation(); // Start the animation for Pioneer and NewEnergy
                     hideOtherLayers([
                         'pioneer-20aug-27aug-layer',
                         'newenergy-20-23august-layer',
                         'darksts-point-layer'
                     ]);
-
-                    startBlinkingAnimation('darksts-point-layer'); // Start blinking animation for darksts layer
                     break;
-                
-                    case 'chapter-14':
-                        map.flyTo({ center: [22.04935, 69.68801], zoom: 4.33, pitch: 2, bearing: 0 });
-                        if (clockElement) clockElement.style.display = 'block';
-                        updateClock('From 25th Aug - 4th Sept 2024');
-                        updateLegend([
-                            { color: '#00cc11', label: 'Asya Energy Path' },
-                        ]);
-                        map.setLayoutProperty('asya-25aug-4sept-layer', 'visibility', 'visible');
-                        map.setLayoutProperty('saamfsu25aug-4sept-layer', 'visibility', 'none');
-                        map.setLayoutProperty('darksts2samfsu-point-layer', 'visibility', 'none');
-                        map.setLayoutProperty('darksts2samfsu-label-layer', 'visibility', 'none');
-                        map.setLayoutProperty('everest-25-4sept-layer', 'visibility', 'none');
-                        map.setLayoutProperty('asyajune-july-layer', 'visibility', 'none');
-                        map.setLayoutProperty('asyajune-25june-layer', 'visibility', 'none');
-                        map.setLayoutProperty('asya-path-layer', 'visibility', 'none');
-
-
-                        stopAnimation(); // Stop any ongoing animations
-                        stopBlinkingAnimation();
-                        break;
-                    
         
-                    case 'chapter-15':
-                        map.flyTo({ center: [33.85806, 69.34581], zoom: 6.72, pitch: 2, bearing: 0 });
-                        if (clockElement) clockElement.style.display = 'block';
-                        updateClock('Everest energy (26th- 4th Sept 2024)');
-                        updateLegend([
-                            { color: '#d1b200', label: 'Everest Energy Path' }
-                        ]);
-            
-                        // Show the layers for chapter 14
-                        map.setLayoutProperty('everest-25-4sept-layer', 'visibility', 'visible');
-                        map.setLayoutProperty('asya-25aug-4sept-layer', 'visibility', 'none');
-                        map.setLayoutProperty('saamfsu25aug-4sept-layer', 'visibility', 'visible');
-                        map.setLayoutProperty('darksts2samfsu-point-layer', 'visibility', 'visible');
-                        map.setLayoutProperty('darksts2samfsu-label-layer', 'visibility', 'visible');
-            
-                        hideOtherLayers([
-                            'everest-25-4sept-layer',
-                            'asya-25aug-4sept-layer',
-                            'saamfsu25aug-4sept-layer',
-                            'darksts2samfsu-point-layer',
-                            'darksts2samfsu-label-layer'
-                        ]);
-            
-                        startBlinkingAnimation('darksts2samfsu-point-layer'); // Start blinking animation for darksts2samfsu layer
-                        break;
-            
-                    case 'chapter-16':
-                        map.flyTo({ center: [66.97571, 43.85848], zoom: 2.6, pitch: 0.51, bearing: 0 });
-                        if (clockElement) clockElement.style.display = 'none';
-                        if (legendElement) legendElement.style.display = 'none';
-                        hideAllLayers();
-                        stopAnimation(); // Stop any ongoing animations
-                        stopBlinkingAnimation();
-                        break;
-                }
+                case 'chapter-14':
+                    map.flyTo({ center: [33.76696, 69.05009], zoom: 6.27, pitch: 0, bearing: 0 });
+                    if (clockElement) clockElement.style.display = 'none';
+                    if (legendElement) legendElement.style.display = 'none';
+                    map.setLayoutProperty('pioneer-layer', 'visibility', 'none');
+                    map.setLayoutProperty('arctic2-point-layer', 'visibility', 'visible');
+                    map.setLayoutProperty('arctic2-label-layer', 'visibility', 'visible');
+                    hideOtherLayers(['arctic2-point-layer', 'arctic2-label-layer']);
+                    stopAnimation(); // Stop any ongoing animations
+                    stopBlinkingAnimation();
+                    break;
+        
+                case 'chapter-15':
+                    map.flyTo({ center: [66.97571, 43.85848], zoom: 2.6, pitch: 0.51, bearing: 0 });
+                    if (clockElement) clockElement.style.display = 'none';
+                    if (legendElement) legendElement.style.display = 'none';
+                    hideAllLayers();
+                    stopAnimation(); // Stop any ongoing animations
+                    stopBlinkingAnimation();
+                    break;
             }
+        }
+        
+        function hideOtherLayers(visibleLayers) {
+            const allLayers = [
+                'pioneer-layer',
+                'arctic2-point-layer',
+                'arctic2-label-layer',
+                'asya-path-layer',
+                'asyajan-june-layer',
+                'asyajune-25june-layer',
+                'asyajune-july-layer',
+                'everest20-25august-layer',
+                'everest-energy-1jan-14august-layer',
+                'pioneer-20aug-27aug-layer',
+                'newenergy-20-23august-layer',
+                'darksts-point-layer',
+                'darksts-label-layer'
+            ];
             
-            function hideOtherLayers(visibleLayers) {
-                const allLayers = [
-                    'pioneer-layer',
-                    'arctic2-point-layer',
-                    'arctic2-label-layer',
-                    'asya-path-layer',
-                    'asyajan-june-layer',
-                    'asyajune-25june-layer',
-                    'asyajune-july-layer',
-                    'everest20-25august-layer',
-                    'everest-energy-1jan-14august-layer',
-                    'pioneer-20aug-27aug-layer',
-                    'newenergy-20-23august-layer',
-                    'darksts-point-layer',
-                    'darksts-label-layer',
-                    'everest-25-4sept-layer',
-                    'asya-25aug-4sept-layer',
-                    'saamfsu25aug-4sept-layer',
-                    'darksts2samfsu-point-layer',
-                    'darksts2samfsu-label-layer'
-                ];
-            
-                allLayers.forEach(layer => {
-                    if (!visibleLayers.includes(layer)) {
-                        map.setLayoutProperty(layer, 'visibility', 'none');
-                    }
-                });
-            }
-            
-            function hideAllLayers() {
-                const allLayers = [
-                    'pioneer-layer',
-                    'arctic2-point-layer',
-                    'arctic2-label-layer',
-                    'asya-path-layer',
-                    'asyajan-june-layer',
-                    'asyajune-25june-layer',
-                    'asyajune-july-layer',
-                    'everest20-25august-layer',
-                    'everest-energy-1jan-14august-layer',
-                    'pioneer-20aug-27aug-layer',
-                    'newenergy-20-23august-layer',
-                    'darksts-point-layer',
-                    'darksts-label-layer',
-                    'everest-25-4sept-layer',
-                    'asya-25aug-4sept-layer',
-                    'saamfsu25aug-4sept-layer',
-                    'darksts2samfsu-point-layer',
-                    'darksts2samfsu-label-layer'
-                ];
-            
-                allLayers.forEach(layer => {
+            allLayers.forEach(layer => {
+                if (!visibleLayers.includes(layer)) {
                     map.setLayoutProperty(layer, 'visibility', 'none');
-                });
-            }
-            
-            function handleStepExit(chapter) {
-                stopAnimation(); // Ensure this function stops the current animation
-                stopBlinkingAnimation(); // Ensure blinking stops when exiting a step
-            }
-            
-            function updateClock(timeString) {
-                const clockElement = document.getElementById('clock');
-                if (clockElement) {
-                    clockElement.innerText = timeString;
-                } else {
-                    console.warn('Clock element not found');
                 }
-            }
-            
-            function stopAnimation() {
-                if (window.requestId) {
-                    cancelAnimationFrame(window.requestId);
-                    window.requestId = null;
-                }
-            }
-            
-            function startBlinkingAnimation(layerId) {
-                let visibility = true;
-            
-                window.blinkingInterval = setInterval(() => {
-                    map.setPaintProperty(layerId, 'circle-opacity', visibility ? 1 : 0);
-                    visibility = !visibility;
-                }, 400); // Change every 500ms
-            }
-            
-            function stopBlinkingAnimation() {
-                if (window.blinkingInterval) {
-                    clearInterval(window.blinkingInterval);
-                    window.blinkingInterval = null;
-                }
-                // Ensure all blinking layers are visible when stopping
-                map.setPaintProperty('darksts2samfsu-point-layer', 'circle-opacity', 1);
-                map.setPaintProperty('darksts-point-layer', 'circle-opacity', 1);
-            }
-            
+            });
+        }
         
+        function hideAllLayers() {
+            const allLayers = [
+                'pioneer-layer',
+                'arctic2-point-layer',
+                'arctic2-label-layer',
+                'asya-path-layer',
+                'asyajan-june-layer',
+                'asyajune-25june-layer',
+                'asyajune-july-layer',
+                'everest20-25august-layer',
+                'everest-energy-1jan-14august-layer',
+                'pioneer-20aug-27aug-layer',
+                'newenergy-20-23august-layer',
+                'darksts-point-layer',
+                'darksts-label-layer'
+            ];
+            
+            allLayers.forEach(layer => {
+                map.setLayoutProperty(layer, 'visibility', 'none');
+            });
+        }
+        
+        function handleStepExit(chapter) {
+            stopAnimation(); // Ensure this function stops the current animation
+        }
+        
+        function updateClock(timeString) {
+            const clockElement = document.getElementById('clock');
+            if (clockElement) {
+                clockElement.innerText = timeString;
+            } else {
+                console.warn('Clock element not found');
+            }
+        }
+        
+        function stopAnimation() {
+            if (window.requestId) {
+                cancelAnimationFrame(window.requestId);
+                window.requestId = null;
+            }
+        }
+        
+        function stopBlinkingAnimation() {
+            // Implement any logic you need to stop the blinking animation here
+            if (window.blinkingInterval) {
+                clearInterval(window.blinkingInterval);
+                window.blinkingInterval = null;
+            }
+        }
